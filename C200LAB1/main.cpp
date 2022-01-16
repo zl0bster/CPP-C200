@@ -1,5 +1,7 @@
 #include "myRect.h"
 #include "myString.h"
+#include "Barrel.h"
+
 #include <iostream>
 
 #define stop __asm nop
@@ -180,7 +182,7 @@ using namespace std;
 		std::cout << "==========================\n";
 	}
 
-/* 
+ 
 	//Задание 6.Конструктор + деструктор = функциональное
 	// замыкание. Класс MyString
 	// Посредством конструктора (конструкторов) и деструктора обеспечьте
@@ -192,30 +194,31 @@ using namespace std;
 		//Создайте метод GetString(), который обеспечит доступ к хранящейся строке.
 		//С помощью cout и метода GetString() распечатайте строку объекта str
 		//Замечание: подумайте, как следует корректно реализовать метод GetString().
-
+		cout << str.GetString() << '\n';
+		cout << "======\n";
 		//...
 	}
 	stop
-*/
-/*
+
+
 	//6a. Раскомментируйте следующий фрагмент. Подумайте - какие
 	//неприятности Вас ожидают. Попробуйте исправить положение (как?)
-		{
-			MyString str1("The first string!");
-			MyString str2 = str1;
-		}
+	{
+		MyString str1("The first string!");
+		MyString str2 = str1;
+		str1.PrintMyString();
+		str2.PrintMyString();
+	}
 		stop
 
-	//6б. Реализуйте метод SetNewString, который будет заменять строку
-	// на новую
-
-	
-	
-
-
-
-*/
-
+		//6б. Реализуйте метод SetNewString, который будет заменять строку
+		// на новую
+	{
+	MyString str1("The next first string!");
+	str1.PrintMyString();
+	str1.SetNewString("The second str.");
+	str1.PrintMyString();
+	}
 
 	//Задание 7.  Решите с помощью классов следующую задачу:
 	//даны две бочки известного объема. В одной бочке в начальный момент
@@ -237,6 +240,21 @@ using namespace std;
 	//		...
 
 	//	}
+	{
+		cout << "=================================\n";
+		Barrel water(100.0);
+		Barrel alcohol(96.0, 4.0);
+		int i = 0;
+		while ((alcohol.GetConcentr() > 50) && (i<5000))
+		{
+			Barrel liter1 = water.PourPortion(1.0);
+			alcohol.PurgeBarrel(liter1);
+			liter1 = alcohol.PourPortion(1.0);
+			water.PurgeBarrel(liter1);
+			i++;
+			cout << i << '\t' << alcohol.GetConcentr() << '\t' << alcohol.GetVolume() << '\t' << water.GetConcentr() << '\n';
+		}
+	}
 return 0;
 
 }//end_main
