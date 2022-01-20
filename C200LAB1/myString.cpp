@@ -7,11 +7,6 @@
 #include "myString.h"
 using namespace std;
 
-// Определение конструктора.
-
-
-// Определение деструктора.
-
 MyString::MyString()
 {
 	m_pStr = nullptr;
@@ -20,14 +15,11 @@ MyString::MyString()
 MyString::~MyString()
 {
 	cout << "free string memory\n";
-	//if (m_pStr != nullptr)
-	//	delete [] m_pStr;
-	//m_pStr = nullptr;
-	//delete m_pStr;
 }
 
 MyString::MyString(const char* other)
 {
+	m_pStr = nullptr;
 	SetNewString(other);
 }
 
@@ -43,9 +35,11 @@ void MyString::SetNewString(const char* other)
 
 void MyString::PrintMyString()
 {
-	//cout << m_pStr << '\n';
-	printf(m_pStr);
-	printf("\n");
+	if (m_pStr != nullptr)
+	{
+		printf(m_pStr);
+		printf("\n");
+	}
 }
 
 const char* MyString::GetString()
