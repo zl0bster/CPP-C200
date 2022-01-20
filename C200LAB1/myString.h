@@ -1,11 +1,11 @@
 #pragma once
 class MyString
 {
-    char* m_pStr;	//строка-член класса
+    char* m_pStr;	//Г±ГІГ°Г®ГЄГ -Г·Г«ГҐГ­ ГЄГ«Г Г±Г±Г 
 public:
     MyString();
     ~MyString();
-    MyString(const char* other);
+    MyString(const char* other = "");
     void SetNewString(const char* other);
     void PrintMyString();
     const char* GetString();
