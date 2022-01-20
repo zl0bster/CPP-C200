@@ -2,8 +2,13 @@
 // Простое наследование. Виртуальные функции. Абстрактные классы.
 // Битовые поля.
 
-
+#include <string>
 #include <tchar.h>
+#include <iostream>
+#include <stdlib.h>
+
+#include "myString.h"
+#include "myRect1.h"
 #define	  stop __asm nop
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -12,16 +17,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 	//Объявите и проинициализируйте массив ar из объектов
 	// типа MyString. 
-		//const int N=3;
-		//MyString str1[N] = {...};
+		const int N=3;
+		MyString str1[N] = {MyString("abcd"), MyString("fghi"), MyString("jklm")};
   
 	//Проверка - печать строк-членов класса
-
-
+		for (int i = 0; i < N; i++)
+		{
+			str1[i].PrintMyString();
+		}
 	//Замените размер const int N=5; , не изменяя список инициализаторов.
-
-
-			
+		const int M = 5;
+		MyString str2[M] = { MyString("abcd"), MyString("fghi"), MyString("jklm") };
+		for (int i = 0; i < M; i++)
+		{
+			str2[i].PrintMyString();
+		}
 	}
 	stop
 
@@ -31,12 +41,23 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Объявите и проинициализируйте массив arPtr из N
 	//указателей на объекты типа MyString (сами объекты 
 	//создаются динамически!).
-	//const int N=3;
-	
+	const int N=3;
+	//MyString* str3[N];
+	//const char* nameBase = "class ";
+	//char* name = new char[10];
+	//char* name2 = new char[4];
+	//for (int i = 0; i < N; i++)
+	//{
+	//	strcpy_s(name, strlen( nameBase)+1, nameBase);
+	//	_itoa_s(i, name2, 3, 10);
+	//	strcat_s(name, 9, name2);
+	//	str3[i] = new MyString(name);
+	//}
+	MyString* str3[N] = { new MyString("class 0"), new MyString("class 1"),new MyString("class 2") };
 	//Печать строк-членов класса
-
+	for (int i = 0; i < N; i++) str3[i]->PrintMyString();
    	//Замените размер const int N=5; , не изменяя список инициализаторов.
-
+	for (int i = 0; i < N; i++) delete str3[i];
 	}
 	stop
 
@@ -52,18 +73,24 @@ int _tmain(int argc, _TCHAR* argv[])
 	//цветной => в базовом классе можно ввести переменную, которая
 	//будет определять цвет фигуры.
 	//Подсказка: для хранения цвета объявите перечисление (RED,GREEN,BLUE...);
-	
-
-	
+	{
+		std::cout << "========================\n";
+		Rect r1;
+		Rect r2(1, 2, 3, 4);
+		Rect r3 = r1;
+		Rect r4(r2);
+		r1.InflateRect(1, 1);
+		r2.InflateRect(2, 2);
+		r1.PrintRect();
+		r2.PrintRect();
+		r3.PrintRect();
+		r4.PrintRect();
 	//В конструкторах производных классов предусмотрите передачу
 	//параметра-цвета конструктору базового класса.
 	//При создании и уничтожении объекта производного типа определите
 	//последовательность вызовов конструкторов и деструкторов базового
 	//и производного классов
-	
-
-
-
+	}
 	stop
 //////////////////////////////////////////////////////////////////////
 /*
