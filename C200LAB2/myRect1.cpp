@@ -37,6 +37,16 @@ Rect::~Rect()
 	printf("destroyed rectangle ID %d\n", get_id());
 }
 
+void Rect::WhereAmI() const
+{
+	printf("It is Rect ID %d\n", get_id());
+}
+
+void Rect::PrintShape() const
+{
+	PrintRect();
+}
+
 
 void Rect::PrintRect() const
 {

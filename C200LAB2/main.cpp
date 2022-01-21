@@ -9,6 +9,7 @@
 
 #include "myString.h"
 #include "myRect1.h"
+#include "myCircle.h"
 #define	  stop __asm nop
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -93,7 +94,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 	stop
 //////////////////////////////////////////////////////////////////////
-/*
+
 	//Задание 4.Виртуальные функции.
 	//4а) Модифицируйте классы Shape,Rect и Circle:
 	//добавьте в каждый класс public метод void WhereAmI().
@@ -103,9 +104,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 	{
-		Shape s(...);
-		Rect r(...);
-		Circle c(...);
+		Shape s();
+		Rect r();
+		Circle c();
 
 	
 		//Метод какого класса вызывается в следующих строчках???
@@ -140,7 +141,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	// ссылок, определенных в предыдущем фрагменте.
 	//Выполните новый фрагмент, объясните разницу.
 
-*/
+
 
 //////////////////////////////////////////////////////////////////////
 /*
