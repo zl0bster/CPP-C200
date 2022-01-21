@@ -22,6 +22,12 @@ Shape::~Shape()
 	printf("destroyed ID %d\n", m_id);
 }
 
+void Shape::PrintShape() const
+{
+	printf("---\n ID %d\n", get_id());
+	printf(" color = %d \n", get_color());
+}
+
 void Shape::WhereAmI() const
 {
 	printf("It is Shape Object\n");

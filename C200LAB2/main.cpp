@@ -104,9 +104,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 	{
-		Shape s();
-		Rect r();
-		Circle c();
+		Shape s;
+		Rect r;
+		Circle c;
 
 	
 		//Метод какого класса вызывается в следующих строчках???
@@ -126,12 +126,12 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 		//Заполните ... согласно комментариям
-		Shape& rShape = ...; //псевдоним s
-		Shape& rRect = ...; //псевдоним r
-		Shape& rCircle = ...; //псевдоним c
-    	...WhereAmI();	//вызов посредством rShape	???
-		...WhereAmI();	//вызов посредством	rRect	???
-		...WhereAmI(); //вызов посредством rCircle	???
+		Shape& rShape = s; //псевдоним s
+		Shape& rRect = r; //псевдоним r
+		Shape& rCircle = c; //псевдоним c
+    	rShape.WhereAmI();	//вызов посредством rShape	???
+		rRect.WhereAmI();	//вызов посредством	rRect	???
+		rCircle.WhereAmI(); //вызов посредством rCircle	???
 		stop
 	}
 

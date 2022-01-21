@@ -119,7 +119,3 @@ void Rect::BindRect(const Rect& r1, const Rect& r2)
 	m_bottom = (r1.m_bottom > r2.m_bottom) ? r1.m_bottom : r2.m_bottom;
 	set_color(r1.get_color());
 }
-void Shape::WhereAmI() const
-{
-	printf("It is Rect Object\n");
-}
