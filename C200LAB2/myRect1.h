@@ -15,6 +15,7 @@ public:
 	~Rect();
 	virtual void WhereAmI() const;
 	virtual void PrintShape() const;
+	virtual void WhereAmIVirtual() const;
 	void PrintRect() const;
 	void InflateRect(int ref_left , int ref_top , int ref_right , int ref_bottom );
 	void InflateRect(int ref_hor = 1, int ref_vert = 1);

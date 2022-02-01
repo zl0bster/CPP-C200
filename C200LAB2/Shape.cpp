@@ -32,3 +32,8 @@ void Shape::WhereAmI() const
 {
 	printf("It is Shape Object\n");
 }
+
+void WhereAmIVirtual() //const
+{
+	printf("It is virtual Shape \n");
+}

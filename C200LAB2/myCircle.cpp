@@ -37,6 +37,11 @@ void Circle::PrintShape() const
 	PrintCircle();
 }
 
+void WhereAmIVirtual() //const
+{
+	printf("It is virtual Circle \n");
+}
+
 void Circle::PrintCircle() const
 {
 	printf("---\n ID %d\n", get_id());

@@ -13,6 +13,7 @@ public:
 	~Circle();
 	virtual void WhereAmI() const;
 	virtual void PrintShape() const;
+	virtual void WhereAmIVirtual() const;
 	void PrintCircle() const;
 	void SetAll(int x, int y, int r);
 	void GetAll(int& x, int& y, int& r) const;

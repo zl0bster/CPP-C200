@@ -47,6 +47,10 @@ void Rect::PrintShape() const
 	PrintRect();
 }
 
+void WhereAmIVirtual() //const
+{
+	printf("It is virtual Rect\n");
+}
 
 void Rect::PrintRect() const
 {

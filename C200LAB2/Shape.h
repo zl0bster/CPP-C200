@@ -11,6 +11,9 @@ public:
 	Shape(eColor col = eColor::WHITE);
 	Shape(const Shape& other);
 	~Shape();
+	virtual void WhereAmI() const;
+	virtual void PrintShape() const;
+	virtual void WhereAmIVirtual() const;
 	inline void set_color(eColor col)
 	{
 		m_color = col;
@@ -23,7 +26,5 @@ public:
 	{
 		return m_id;
 	}
-	virtual void WhereAmI() const;
-	virtual void PrintShape() const;
 };
 
