@@ -47,7 +47,7 @@ void Rect::PrintShape() const
 	PrintRect();
 }
 
-void WhereAmIVirtual() //const
+void Rect::WhereAmIVirtual() const
 {
 	printf("It is virtual Rect\n");
 }
@@ -122,4 +122,17 @@ void Rect::BindRect(const Rect& r1, const Rect& r2)
 	m_top = (r1.m_top < r2.m_top) ? r1.m_top : r2.m_top;
 	m_bottom = (r1.m_bottom > r2.m_bottom) ? r1.m_bottom : r2.m_bottom;
 	set_color(r1.get_color());
+}
+
+void Rect::GetMiddlePoint(int& x, int& y) const
+{
+	x = m_left + (m_right - m_left) / 2;
+	y = m_top + (m_bottom - m_top) / 2;
+}
+
+void Rect::GetMinDim(int& d) const
+{
+	int dx = m_right - m_left;
+	int dy = m_bottom - m_top;
+	d = (dx > dy) ? dy : dx;
 }

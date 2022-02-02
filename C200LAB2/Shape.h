@@ -10,7 +10,7 @@ private:
 public:
 	Shape(eColor col = eColor::WHITE);
 	Shape(const Shape& other);
-	~Shape();
+	virtual ~Shape();
 	virtual void WhereAmI() const;
 	virtual void PrintShape() const;
 	virtual void WhereAmIVirtual() const;

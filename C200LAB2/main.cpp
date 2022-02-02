@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 #include "myString.h"
+#include "Shape.h"
 #include "myRect1.h"
 #include "myCircle.h"
 #define	  stop __asm nop
@@ -152,7 +153,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 //////////////////////////////////////////////////////////////////////
-/*
+
 	//Задание 5.Виртуальные деструкторы.
 	//Модифицируйте классы:
 	//a) введите соответствующие
@@ -173,13 +174,17 @@ int _tmain(int argc, _TCHAR* argv[])
 		//Если Вы считаете, что в приведенном фрагменте чего-то
 		//не хватает - добавьте
 
-		Rect r(<параметры>);
+		Rect r(10,11,20,21);
 		Shape* ar[]={new Shape(r), new Rect(r), new Circle(r), new Circle() };
 		//Вызовите для каждого элемента массива метод WhereAmIVirtual()
-	
+		for (int i = 0; i < 4; i++)
+		{
+			ar[i]->WhereAmI();
+			ar[i]->PrintShape();
+	}
 
 	stop
-*/
+
 
 /*
 	//Задание 6*. В чем заключается отличие 1) и 2)

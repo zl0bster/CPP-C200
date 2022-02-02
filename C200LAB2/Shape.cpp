@@ -28,12 +28,12 @@ void Shape::PrintShape() const
 	printf(" color = %d \n", get_color());
 }
 
+void Shape::WhereAmIVirtual() const
+{
+	printf("It is virtual Shape \n");
+}
+
 void Shape::WhereAmI() const
 {
 	printf("It is Shape Object\n");
-}
-
-void WhereAmIVirtual() //const
-{
-	printf("It is virtual Shape \n");
 }

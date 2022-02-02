@@ -12,7 +12,7 @@ public:
 	Rect(int x1, int y1, int x2, int y2, eColor col = eColor::WHITE);
 	Rect(const Rect& other);
 	Rect(const Rect& r1, const Rect& r2);
-	~Rect();
+	virtual ~Rect();
 	virtual void WhereAmI() const;
 	virtual void PrintShape() const;
 	virtual void WhereAmIVirtual() const;
@@ -22,4 +22,6 @@ public:
 	void SetAll(int x1, int y1, int x2, int y2, eColor col = eColor::WHITE);
 	void GetAll(int& x1, int& y1, int& x2, int& y2) const;
 	void BindRect(const Rect& r1, const Rect& r2);
+	void GetMiddlePoint(int& x, int& y) const;
+	void GetMinDim(int& d) const;
 };

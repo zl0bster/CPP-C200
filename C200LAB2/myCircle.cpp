@@ -1,7 +1,9 @@
 #include "myCircle.h"
 #include "Shape.h"
+#include "myRect1.h"
 
 #include <stdio.h>
+#include <cmath>
 
 Circle::Circle()
 {
@@ -22,6 +24,13 @@ Circle::Circle(const Circle& other)
 	set_color(other.get_color());
 }
 
+Circle::Circle(const Rect& other)
+{
+	other.GetMinDim(m_r);
+	m_r /=  2;
+	other.GetMiddlePoint(m_x, m_y);
+}
+
 Circle::~Circle()
 {
 	printf("destroyed circle ID %d\n", get_id());
@@ -37,7 +46,7 @@ void Circle::PrintShape() const
 	PrintCircle();
 }
 
-void WhereAmIVirtual() //const
+void Circle::WhereAmIVirtual() const
 {
 	printf("It is virtual Circle \n");
 }
