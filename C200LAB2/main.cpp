@@ -174,52 +174,62 @@ int _tmain(int argc, _TCHAR* argv[])
 		//Если Вы считаете, что в приведенном фрагменте чего-то
 		//не хватает - добавьте
 
-		Rect r(10,11,20,21);
-		Shape* ar[]={new Shape(r), new Rect(r), new Circle(r), new Circle() };
-		//Вызовите для каждого элемента массива метод WhereAmIVirtual()
-		for (int i = 0; i < 4; i++)
-		{
-			ar[i]->WhereAmI();
-			ar[i]->PrintShape();
+	Rect r(10,11,20,21);
+	Shape* ar[]={new Shape(r), new Rect(r), new Circle(r), new Circle() };
+	//Вызовите для каждого элемента массива метод WhereAmIVirtual()
+	for (int i = 0; i < 4; i++)
+	{
+		ar[i]->WhereAmI();
+		ar[i]->PrintShape();
 	}
 
 	stop
-
-
-/*
+	for (int i = 0; i < 4; i++)
+	{
+		delete ar[i];
+	}
+	std::cout << "========================\n";
 	//Задание 6*. В чем заключается отличие 1) и 2)
 	{
-		Shape* pShapes = new Rect[10];//1)
-		Rect* pRects = new Rect[10];//2)
+		size_t dim = 10;
+		Shape* pShapes = new Rect[dim];//1)
+		Rect* pRects = new Rect[dim];//2)
 
-		//Попробуйте вызвать метод WhereAmIVirtual() для каждого элемента обоих массивов -
-		//в чем заключается проблема???
+	//Попробуйте вызвать метод WhereAmIVirtual() для каждого элемента обоих массивов -
+	//в чем заключается проблема???
+		for (int i = 0; i < dim; i++)
+		{
+			std::cout << i<<"\n";
+			//pShapes[i].WhereAmI();
+			pRects[i].WhereAmI();
+		}
 
-
-		//Освободите динамически захваченную память
-
+	//Освободите динамически захваченную память
+		delete[] pShapes;
+		delete[] pRects;
 	}
 
-*/
 
 //////////////////////////////////////////////////////////////////////
-/*
+
 	//Задание 7.Виртуальные функции и оператор разрешения области видимости. 
 
 	{
-		Rect r(...);
+		Rect r(10, 11, 20, 21);
 		Shape* p = &r;	
 		p->WhereAmIVirtual();//...
+		r.WhereAmIVirtual();
+		p->PrintShape();
+		r.PrintShape();
 		stop
-	
-		
-		//4a Оператор разрешения области видимости.
+		//7a Оператор разрешения области видимости.
 		//Посредством объекта r и указателя p вызовите виртуальную функцию
 		//WhereAmIVirtual()класса Shape
-		
-		
+		p->Shape::WhereAmI();
+		r.Shape::WhereAmI();
+		p->Shape::PrintShape();
+		r.Shape::PrintShape();
 	}
-*/
 
 //////////////////////////////////////////////////////////////////////
 /*
