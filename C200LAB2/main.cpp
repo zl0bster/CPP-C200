@@ -217,8 +217,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		Rect r(10, 11, 20, 21);
 		Shape* p = &r;	
-		p->WhereAmIVirtual();//...
-		r.WhereAmIVirtual();
+		p->WhereAmI();//...
+		r.WhereAmI();
 		p->PrintShape();
 		r.PrintShape();
 		stop
@@ -232,20 +232,25 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 //////////////////////////////////////////////////////////////////////
-/*
+
 	//Задание 8.Чисто виртуальные функции. 
 	//Введите в базовый класс метод void Inflate(int); Подумайте:
 	//можно ли реализовать такой метод для базового класса? => как его нужно объявить.
 	//Реализуйте этот метод для производных классов.
 	{
-		Rect r(...);
+		std::cout << "========================\n";
+		Rect r(10, 11, 20, 21);
 		Shape* p = &r;
+		p->PrintShape();
 		p->Inflate(5);
-		Circle c(...);
+		p->PrintShape();
+		Circle c(12,12,6);
 		p = &c;
+		p->PrintShape();
 		p->Inflate(5);
+		p->PrintShape();
 	}
-*/
+
 
 
 //////////////////////////////////////////////////////////////////////

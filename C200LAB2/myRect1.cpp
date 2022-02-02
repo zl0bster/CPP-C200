@@ -136,3 +136,8 @@ void Rect::GetMinDim(int& d) const
 	int dy = m_bottom - m_top;
 	d = (dx > dy) ? dy : dx;
 }
+
+void Rect::Inflate(int d)
+{
+	InflateRect(d, d);
+}

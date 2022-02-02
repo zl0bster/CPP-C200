@@ -77,3 +77,8 @@ void Circle::InflateCircle(int incr)
 {
 	m_r += incr;
 }
+
+void Circle::Inflate(int dr)
+{
+	InflateCircle(dr);
+}

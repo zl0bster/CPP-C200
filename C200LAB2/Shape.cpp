@@ -33,6 +33,10 @@ void Shape::WhereAmIVirtual() const
 	printf("It is virtual Shape \n");
 }
 
+void Shape::Inflate(int)
+{
+}
+
 void Shape::WhereAmI() const
 {
 	printf("It is Shape Object\n");

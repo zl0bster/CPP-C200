@@ -26,5 +26,6 @@ public:
 	{
 		return m_id;
 	}
+	virtual void Inflate(int);
 };
 

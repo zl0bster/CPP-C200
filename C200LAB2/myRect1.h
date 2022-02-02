@@ -24,4 +24,5 @@ public:
 	void BindRect(const Rect& r1, const Rect& r2);
 	void GetMiddlePoint(int& x, int& y) const;
 	void GetMinDim(int& d) const;
+	virtual void Inflate(int d);
 };

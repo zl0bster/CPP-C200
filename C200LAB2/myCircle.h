@@ -20,5 +20,6 @@ public:
 	void SetAll(int x, int y, int r);
 	void GetAll(int& x, int& y, int& r) const;
 	void InflateCircle(int incr);
+	virtual void Inflate(int dr);
 };
 
