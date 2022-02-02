@@ -9,4 +9,5 @@ public:
     void SetNewString(const char* other);
     void PrintMyString();
     const char* GetString();
+    void Concat(const char* other);
 };

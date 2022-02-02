@@ -46,3 +46,14 @@ const char* MyString::GetString()
 {
 	return m_pStr;
 }
+
+void MyString::Concat(const char* other)
+{
+	size_t lenOther = strlen(other) + 1;
+	size_t lenOrig = strlen(m_pStr) + 1;
+	char* newStr = new char[lenOther + lenOrig + 1];
+	strcpy_s(newStr, lenOrig, m_pStr);
+	strcpy_s(newStr + lenOrig, lenOther, other);
+	delete[] m_pStr;
+	m_pStr = newStr;
+}

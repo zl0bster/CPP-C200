@@ -5,26 +5,25 @@
 #include <stdio.h>
 #include <cmath>
 
-Circle::Circle()
+Circle::Circle():Shape(Shape::RED)
 {
 	m_x = 0;
 	m_y = 0;
 	m_r = 0;
 }
 
-Circle::Circle(int x, int y, int r, eColor col)
+Circle::Circle(int x, int y, int r, eColor col):Shape(col), m_x(x), m_y(y), m_r(r)
 {
-	SetAll(x, y, r);
-	set_color(col);
+	//SetAll(x, y, r);
+	//set_color(col);
 }
 
-Circle::Circle(const Circle& other)
+Circle::Circle(const Circle& other) :Shape(other)
 {
 	SetAll(other.m_x, other.m_y, other.m_r);
-	set_color(other.get_color());
 }
 
-Circle::Circle(const Rect& other)
+Circle::Circle(const Rect& other) : Shape(other)
 {
 	other.GetMinDim(m_r);
 	m_r /=  2;

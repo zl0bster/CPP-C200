@@ -200,7 +200,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		for (int i = 0; i < dim; i++)
 		{
 			std::cout << i<<"\n";
-			//pShapes[i].WhereAmI();
+			(pShapes+i*sizeof(Rect)).WhereAmI();
+
 			pRects[i].WhereAmI();
 		}
 
