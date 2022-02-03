@@ -11,3 +11,4 @@ public:
     const char* GetString();
     void Concat(const char* other);
 };
+MyString ConcatLines(const char* , ...);// nullptr is end of line

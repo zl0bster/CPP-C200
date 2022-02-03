@@ -200,7 +200,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		for (int i = 0; i < dim; i++)
 		{
 			std::cout << i<<"\n";
-			(pShapes+i*sizeof(Rect)).WhereAmI();
+			//(pShapes+i*sizeof(Rect)).WhereAmI();
 
 			pRects[i].WhereAmI();
 		}
@@ -258,6 +258,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Задание 9. Создайте глобальную функцию, которая будет принимать любое
 	//количество указателей на строки, а возвращать объект MyString,
 	//в котором строка будет конкатенацией параметров
+	std::cout << "========================\n";
+	MyString line = ConcatLines("Abc ", "Defg ", "Hijkl", "Mnop ", nullptr);
+	line.PrintMyString();
 
 ////////////////////////////////////////////////////////////////////////
 /*

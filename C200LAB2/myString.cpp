@@ -57,3 +57,26 @@ void MyString::Concat(const char* other)
 	delete[] m_pStr;
 	m_pStr = newStr;
 }
+
+MyString ConcatLines(const char* line, ...)// nullptr is end of line
+{
+	size_t lineLength = 0;
+	char** currentLine = line;//const_cast<char*> (line);
+	while (currentLine != nullptr)
+	{
+		lineLength += strlen(*currentLine);
+		currentLine ++;
+	}
+	char* newLine = new char[lineLength + 1];
+	currentLine = const_cast<char*> (line);
+	char* destPos = newLine;
+	while (currentLine != nullptr)
+	{
+		lineLength = strlen(*currentLine);
+		strcpy_s(destPos, lineLength, *currentLine);
+		destPos += lineLength;
+		currentLine++;
+	}
+	*destPos = '/0';
+	return MyString(newLine);
+}
