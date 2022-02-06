@@ -1,4 +1,4 @@
-#pragma warning(suppress : 4996)
+#pragma warning(disable : 4996)
 
 
 #include <stdio.h>
@@ -61,22 +61,27 @@ void MyString::Concat(const char* other)
 MyString ConcatLines(const char* line, ...)// nullptr is end of line
 {
 	size_t lineLength = 0;
-	char** currentLine = line;//const_cast<char*> (line);
+	char** p_arg = const_cast<char**> (&line);
+	char* currentLine = *p_arg;
 	while (currentLine != nullptr)
 	{
-		lineLength += strlen(*currentLine);
-		currentLine ++;
+		lineLength += strlen(currentLine);
+		p_arg++;
+		currentLine = *p_arg;
 	}
 	char* newLine = new char[lineLength + 1];
-	currentLine = const_cast<char*> (line);
+	p_arg = const_cast<char**> (&line);
+	currentLine = *p_arg;;
 	char* destPos = newLine;
 	while (currentLine != nullptr)
 	{
-		lineLength = strlen(*currentLine);
-		strcpy_s(destPos, lineLength, *currentLine);
-		destPos += lineLength;
-		currentLine++;
+		int len = strlen(currentLine);
+		//strcpy_s(destPos, lineLength, currentLine);
+		strcpy(destPos, currentLine);
+		destPos += len;
+		p_arg++;
+		currentLine = *p_arg;
 	}
-	*destPos = '/0';
+	*destPos = 0;
 	return MyString(newLine);
 }
