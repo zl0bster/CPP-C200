@@ -23,17 +23,32 @@ MyString::MyString(const char* other)
 	SetNewString(other);
 }
 
-void MyString::SetNewString(const char* other)
+MyString::MyString(const MyString& other)
 {
-	size_t len = strlen(other)+1;
-	char* newStr = new char[len + 1];
-	strcpy_s(newStr, len, other);
-	if (m_pStr != nullptr)
-		delete [] m_pStr;
-	m_pStr = newStr;
+	m_pStr = nullptr;
+	SetNewString(other.m_pStr);
 }
 
-void MyString::PrintMyString()
+MyString::MyString(MyString&& other)
+{
+	m_pStr = other.m_pStr;
+	other.m_pStr = nullptr;
+}
+
+void MyString::SetNewString(const char* other)
+{
+	delete[] m_pStr;
+	if (other != nullptr)
+	{
+		size_t len = strlen(other) + 1;
+		m_pStr = new char[len];
+		strcpy_s(m_pStr, len, other);
+	}
+	else
+		m_pStr = nullptr;
+}
+
+void MyString::PrintMyString() const
 {
 	if (m_pStr != nullptr)
 	{
@@ -42,7 +57,7 @@ void MyString::PrintMyString()
 	}
 }
 
-const char* MyString::GetString()
+const char* MyString::GetString() const
 {
 	return m_pStr;
 }
@@ -72,9 +87,9 @@ MyString& MyString::operator=(const char* oth)
 
 MyString ConcatLines(const char* line, ...)// nullptr is end of line
 {
-	size_t lineLength = 0;
-	char** p_arg = const_cast<char**> (&line);
-	char* currentLine = *p_arg;
+	size_t lineLength = 1;
+	const char** p_arg = &line;
+	const char* currentLine = *p_arg;
 	while (currentLine != nullptr)
 	{
 		lineLength += strlen(currentLine);
@@ -82,18 +97,17 @@ MyString ConcatLines(const char* line, ...)// nullptr is end of line
 		currentLine = *p_arg;
 	}
 	char* newLine = new char[lineLength + 1];
-	p_arg = const_cast<char**> (&line);
+	*newLine = 0;
+	p_arg = &line;
 	currentLine = *p_arg;;
 	char* destPos = newLine;
 	while (currentLine != nullptr)
 	{
-		int len = strlen(currentLine);
-		//strcpy_s(destPos, lineLength, currentLine);
-		strcpy(destPos, currentLine);
-		destPos += len;
+		strcat(newLine, currentLine);
 		p_arg++;
 		currentLine = *p_arg;
 	}
-	*destPos = 0;
-	return MyString(newLine);
+	MyString tmp(newLine);
+	delete[] newLine;
+	return tmp; // don't use std::move()
 }
