@@ -14,7 +14,11 @@ MyString::MyString()
 
 MyString::~MyString()
 {
-	cout << "free string memory\n";
+	if  (m_pStr != nullptr)
+		cout << "free string memory : " << m_pStr << "\n";
+	else
+		cout << "free empty string memory \n";
+	delete[] m_pStr;
 }
 
 MyString::MyString(const char* other)
@@ -23,17 +27,32 @@ MyString::MyString(const char* other)
 	SetNewString(other);
 }
 
-void MyString::SetNewString(const char* other)
+MyString::MyString(const MyString& other)
 {
-	//TODO check other for NULLPTR
-	size_t len = strlen(other)+1;
-	char* newStr = new char[len + 1];
-	strcpy_s(newStr, len, other);
-	delete [] m_pStr;
-	m_pStr = newStr;
+	m_pStr = nullptr;
+	SetNewString(other.m_pStr);
 }
 
-void MyString::PrintMyString()
+MyString::MyString(MyString&& other)
+{
+	m_pStr = other.m_pStr;
+	other.m_pStr = nullptr;
+}
+
+void MyString::SetNewString(const char* other)
+{
+	delete[] m_pStr;
+	if (other != nullptr)
+	{
+		size_t len = strlen(other) + 1;
+		m_pStr = new char[len];
+		strcpy_s(m_pStr, len, other);
+	}
+	else
+		m_pStr = nullptr;
+}
+
+void MyString::PrintMyString() const
 {
 	if (m_pStr != nullptr)
 	{
@@ -42,7 +61,7 @@ void MyString::PrintMyString()
 	}
 }
 
-const char* MyString::GetString()
+const char* MyString::GetString() const
 {
 	return m_pStr;
 }
@@ -60,7 +79,7 @@ void MyString::Concat(const char* other)
 
 MyString ConcatLines(const char* line, ...)// nullptr is end of line
 {
-	size_t lineLength = 0;
+	size_t lineLength = 1;
 	const char** p_arg = &line;
 	const char* currentLine = *p_arg;
 	while (currentLine != nullptr)
@@ -76,14 +95,17 @@ MyString ConcatLines(const char* line, ...)// nullptr is end of line
 	char* destPos = newLine;
 	while (currentLine != nullptr)
 	{
-		int len = strlen(currentLine);
+		//int len = strlen(currentLine);
 		//strcpy_s(destPos, lineLength, currentLine);
-		strcpy(destPos, currentLine);
-		destPos += len;
+		//strcpy(destPos, currentLine);
+		strcat(newLine, currentLine);
+		//destPos += len;
 		p_arg++;
 		currentLine = *p_arg;
 	}
-	*destPos = 0;
-
-	return MyString(newLine);
+	//*destPos = 0;
+	//newLine[lineLength-1] = 0;
+	MyString tmp(newLine);
+	delete[] newLine;
+	return tmp; // don't use std::move()
 }
