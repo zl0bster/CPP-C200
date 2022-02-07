@@ -25,11 +25,11 @@ MyString::MyString(const char* other)
 
 void MyString::SetNewString(const char* other)
 {
+	//TODO check other for NULLPTR
 	size_t len = strlen(other)+1;
 	char* newStr = new char[len + 1];
 	strcpy_s(newStr, len, other);
-	if (m_pStr != nullptr)
-		delete [] m_pStr;
+	delete [] m_pStr;
 	m_pStr = newStr;
 }
 
@@ -61,8 +61,8 @@ void MyString::Concat(const char* other)
 MyString ConcatLines(const char* line, ...)// nullptr is end of line
 {
 	size_t lineLength = 0;
-	char** p_arg = const_cast<char**> (&line);
-	char* currentLine = *p_arg;
+	const char** p_arg = &line;
+	const char* currentLine = *p_arg;
 	while (currentLine != nullptr)
 	{
 		lineLength += strlen(currentLine);
@@ -70,7 +70,8 @@ MyString ConcatLines(const char* line, ...)// nullptr is end of line
 		currentLine = *p_arg;
 	}
 	char* newLine = new char[lineLength + 1];
-	p_arg = const_cast<char**> (&line);
+	*newLine = 0;
+	p_arg = &line;
 	currentLine = *p_arg;;
 	char* destPos = newLine;
 	while (currentLine != nullptr)
@@ -83,5 +84,6 @@ MyString ConcatLines(const char* line, ...)// nullptr is end of line
 		currentLine = *p_arg;
 	}
 	*destPos = 0;
+
 	return MyString(newLine);
 }
