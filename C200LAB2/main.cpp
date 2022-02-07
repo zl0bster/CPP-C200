@@ -259,7 +259,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//количество указателей на строки, а возвращать объект MyString,
 	//в котором строка будет конкатенацией параметров
 	std::cout << "========================\n";
-	MyString line = ConcatLines("Abc ", "Defg ", "Hijkl", "Mnop ", nullptr);
+	MyString line = ConcatLines("Abc ", "Defg ", "Hijkl ", "Mnop rst", nullptr);
 	line.PrintMyString();
 
 ////////////////////////////////////////////////////////////////////////
