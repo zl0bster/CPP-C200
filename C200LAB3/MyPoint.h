@@ -10,11 +10,21 @@ public:
 	MyPoint(int x=0, int y=0);
 	~MyPoint();
 	MyPoint(const MyPoint& oth);
+	MyPoint(MyPoint&& oth);
 	void GetCoords(int& x, int& y) const;
 	void PrintPoint() const;
-	//MyPoint& operator =(const MyPoint&);
-	MyPoint& operator +=(const MyPoint&);
-	MyPoint& operator +=(int inc);
+	MyPoint& operator =(const MyPoint&);
+	MyPoint& operator+=(const MyPoint&);
+	MyPoint& operator+=(int inc);
+	MyPoint operator+(const MyPoint&);
+	MyPoint operator+(const int&);
+	const MyPoint& operator+() const;
+
+	friend MyPoint& operator-(MyPoint&);
+	friend MyPoint operator+(const int&, const MyPoint&);
+	friend MyPoint operator-(const MyPoint&, const MyPoint&);
+	friend MyPoint operator-(const MyPoint&, const int&);
 	friend MyPoint& operator -=(MyPoint&, const MyPoint&);
-	//MyPoint& operator +
+
+
 };

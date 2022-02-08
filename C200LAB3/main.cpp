@@ -74,17 +74,17 @@ int _tmain(int argc, _TCHAR* argv[])
 	MyPoint pt2(2,2);
 	MyPoint pt3;
 
-//	pt3 = pt1 + 5;
-//	pt3 = 2 + pt1;
-//	pt3 = pt1 + pt2;
+	pt3 = pt1 + 5;
+	pt3 = 2 + pt1;
+	pt3 = pt1 + pt2;
 
-//	pt3 = pt1 - 5;
-//	pt3 = pt1 - pt2;
+	pt3 = pt1 - 5;
+	pt3 = pt1 - pt2;
 	stop
 
 	//Задание 1d. Перегрузите унарный оператор +/- 
-//	pt3 = -pt1;
-//	pt3 = +pt1;
+	pt3 = -pt1;
+	pt3 = +pt1;
 	}
 
 

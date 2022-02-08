@@ -75,7 +75,17 @@ void MyString::Concat(const char* other)
 
 MyString& MyString::operator=(const MyString& oth)
 {
+	if (this != &oth)
+	{
+		SetNewString(oth.m_pStr);
+	}
+	return *this;
+}
+
+MyString& MyString::operator=(MyString&& oth)
+{
 	SetNewString(oth.m_pStr);
+	//delete &oth;
 	return *this;
 }
 

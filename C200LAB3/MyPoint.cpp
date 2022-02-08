@@ -23,13 +23,22 @@ MyPoint::MyPoint(const MyPoint& oth)
 	std::cout << "_point ID_" << m_id << "\t - "<< mx << ", " << my << " copied\n";
 }
 
-void MyPoint::GetCoords(int& x, int& y)
+MyPoint::MyPoint(MyPoint&& oth)
+{
+	mx = oth.mx;
+	my = oth.my;
+	m_id = ++counter;
+	std::cout << "_point ID_" << m_id << "\t - " << mx << ", " << my << " moved\n";
+	//delete &oth;
+}
+
+void MyPoint::GetCoords(int& x, int& y) const
 {
 	x = mx;
 	y = my;
 }
 
-void MyPoint::PrintPoint()
+void MyPoint::PrintPoint() const
 {
 	std::cout << "point ID_" << m_id << "\t - " << mx << ", " << my << "\n";
 }
@@ -54,6 +63,57 @@ MyPoint& MyPoint::operator+=(int inc)
 	my += inc;
 	return *this;
 
+}
+
+MyPoint MyPoint::operator+(const MyPoint& right)
+{
+	//mx += right.mx;
+	//my += right.my;
+	return MyPoint(mx + right.mx, my + right.my);
+}
+
+MyPoint MyPoint::operator+(const int& right)
+{
+	//mx += right;
+	//my += right;
+	return MyPoint(mx + right, my + right);
+}
+
+//MyPoint MyPoint::operator-(MyPoint& right)
+//{
+//	return MyPoint(mx - right.mx, my - right.my);
+//}
+//
+//MyPoint MyPoint::operator-(const int& right)
+//{
+//	return MyPoint(mx - right, my - right);
+//}
+
+const MyPoint& MyPoint::operator+() const
+{
+	return *this;
+}
+
+MyPoint& operator-(MyPoint& pt)
+{
+	pt.mx = -pt.mx;
+	pt.my = -pt.my;
+	return pt;
+}
+
+MyPoint operator+(const int& left, const MyPoint& right)
+{
+	return MyPoint(right.mx + left, right.my + left);
+}
+
+MyPoint operator-(const MyPoint& left, const MyPoint& right)
+{
+	return MyPoint(left.mx - right.mx, left.my - right.my);
+}
+
+MyPoint operator-(const MyPoint& left, const int& right)
+{
+	return MyPoint(left.mx - right, left.my - right);
 }
 
 MyPoint& operator-=(MyPoint& pt1, const MyPoint& pt2)
