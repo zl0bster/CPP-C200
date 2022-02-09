@@ -140,12 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyBase.cpp" />
     <ClCompile Include="MyData.cpp" />
+    <ClCompile Include="MyPair.cpp" />
     <ClCompile Include="MyPoint.cpp" />
     <ClCompile Include="myString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MyBase.h" />
     <ClInclude Include="MyData.h" />
+    <ClInclude Include="MyPair.h" />
     <ClInclude Include="MyPoint.h" />
     <ClInclude Include="myString.h" />
   </ItemGroup>

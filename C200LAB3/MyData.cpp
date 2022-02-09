@@ -28,3 +28,11 @@ MyData::MyData(Sex s, size_t age, const char* job, float sal)
 //MyData::~MyData()
 //{
 //}
+
+ostream& operator<<(ostream& os, const MyData& md)
+{
+	char sxAlph[]{ "UMF" };
+	char sx = sxAlph[md.m_sex];
+	os << "ID: " << md.m_id << "\t" << sx << "\t" << md.m_age
+		<< "\t" << md.m_job << "\t" << md.m_salary;
+}

@@ -27,6 +27,12 @@
     <ClCompile Include="MyData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyPair.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myString.h">
@@ -36,6 +42,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyPair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
