@@ -29,7 +29,6 @@ MyPoint::MyPoint(MyPoint&& oth)
 	my = oth.my;
 	m_id = ++counter;
 	std::cout << "_point ID_" << m_id << "\t - " << mx << ", " << my << " moved\n";
-	//delete &oth !!!;
 }
 
 void MyPoint::GetCoords(int& x, int& y) const
@@ -62,7 +61,6 @@ MyPoint& MyPoint::operator+=(int inc)
 	mx += inc;
 	my += inc;
 	return *this;
-
 }
 
 MyPoint MyPoint::operator+(const MyPoint& right) const
@@ -70,9 +68,8 @@ MyPoint MyPoint::operator+(const MyPoint& right) const
 	return MyPoint(mx + right.mx, my + right.my);
 }
 
-MyPoint MyPoint::operator+(int right)
+MyPoint MyPoint::operator+(int right) const
 {
-;
 	return MyPoint(mx + right, my + right);
 }
 
@@ -96,7 +93,7 @@ MyPoint operator-(const MyPoint& pt)
 	return MyPoint(-pt.mx, -pt.my);
 }
 
-MyPoint operator+(const int& left, const MyPoint& right)
+MyPoint operator+(int left, const MyPoint& right)
 {
 	return MyPoint(right.mx + left, right.my + left);
 }
@@ -106,7 +103,7 @@ MyPoint operator-(const MyPoint& left, const MyPoint& right)
 	return MyPoint(left.mx - right.mx, left.my - right.my);
 }
 
-MyPoint operator-(const MyPoint& left, const int& right)
+MyPoint operator-(const MyPoint& left, int right)
 {
 	return MyPoint(left.mx - right, left.my - right);
 }

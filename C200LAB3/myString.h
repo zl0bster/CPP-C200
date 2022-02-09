@@ -11,7 +11,7 @@ private:
 public:
     MyString();
     ~MyString();
-    explicit MyString(const char* other);
+    MyString(const char* other);
     MyString(const MyString& other);
     MyString(MyString&& other);
     void SetNewString(const char* other);
@@ -22,8 +22,9 @@ public:
     MyString& operator = (MyString&& oth);
     MyString& operator = (const char* oth);
     MyString& operator+= (const MyString& oth);
+    MyString operator+(const MyString& oth) const;
 
-    friend MyString operator + (const MyString& left, const MyString& right);
+    //friend MyString operator + (const MyString& left, const MyString& right);
     friend ostream& operator<<(ostream& os, const MyString& it);
 };
 MyString ConcatLines(const char* , ...);// nullptr is end of line

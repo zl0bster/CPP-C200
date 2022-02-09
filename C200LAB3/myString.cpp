@@ -38,7 +38,7 @@ MyString::MyString(MyString&& other)
 {
 	m_pStr = other.m_pStr;
 	m_id = ++counter;
-	other.m_pStr = nullptr;
+	//other.m_pStr = nullptr;
 }
 
 void MyString::SetNewString(const char* other)
@@ -70,15 +70,25 @@ const char* MyString::GetString() const
 
 void MyString::Concat(const char* other)
 {
-	//TODO check for nullptr int pointers
-	size_t lenOther = strlen(other) + 1;
-	size_t lenOrig = strlen(m_pStr) + 1;
-	char* newStr = new char[lenOther + lenOrig + 1];
-	strcpy_s(newStr, lenOrig, m_pStr);
-	//strcpy_s(newStr + lenOrig, lenOther, other);
-	strcat(newStr, other);
-	delete[] m_pStr;
-	m_pStr = newStr;
+	if (other == nullptr) return;
+	if (m_pStr != nullptr)
+	{
+		size_t lenOther = strlen(other) + 1;
+		size_t lenOrig = strlen(m_pStr) + 1;
+		char* newStr = new char[lenOther + lenOrig + 1];
+		strcpy_s(newStr, lenOrig, m_pStr);
+		strcat(newStr, other);
+		delete[] m_pStr;
+		m_pStr = newStr;
+	}
+	else
+	{
+		size_t lenOther = strlen(other) + 1;
+		char* newStr = new char[lenOther + 1];
+		strcpy_s(newStr, lenOther, other);
+		delete[] m_pStr;
+		m_pStr = newStr;
+	}
 }
 
 MyString& MyString::operator=(const MyString& oth)
@@ -92,8 +102,10 @@ MyString& MyString::operator=(const MyString& oth)
 
 MyString& MyString::operator=(MyString&& oth)
 {
-	SetNewString(oth.m_pStr);
-	//delete &oth;
+	if (this != &oth)
+	{
+		SetNewString(oth.m_pStr);
+	}
 	return *this;
 }
 
@@ -109,12 +121,20 @@ MyString& MyString::operator+=(const MyString& oth)
 	return *this;
 }
 
-MyString operator+(const MyString& left, const MyString& right)
+MyString MyString::operator+(const MyString& oth) const
 {
-	MyString tmp(left);
-	tmp.Concat(right.m_pStr);
+	MyString tmp(m_pStr);
+	tmp.Concat(oth.m_pStr);
 	return tmp;
 }
+
+//
+//MyString operator+(const MyString& left, const MyString& right)
+//{
+//	MyString tmp(left);
+//	tmp.Concat(right.m_pStr);
+//	return tmp;
+//}
 
 ostream& operator<<(ostream& os, const MyString& it)
 {

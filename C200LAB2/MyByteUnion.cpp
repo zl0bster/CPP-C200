@@ -72,7 +72,7 @@ void Oct::show() const
 	cout << str << endl;
 }
 
-void Oct::showPos(size_t pos)
+void Oct::showPos(size_t pos) const
 {
 }
 
@@ -108,7 +108,7 @@ void Hex::show() const
 	cout << str << endl;
 }
 
-void Hex::showPos(size_t pos)
+void Hex::showPos(size_t pos) const
 {
 }
 

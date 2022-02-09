@@ -23,7 +23,7 @@ class Oct
 	unsigned char oct2:2;
 
 	void show() const;
-	void showPos(size_t pos);
+	void showPos(size_t pos)  const;
 	void edit(size_t pos, size_t val);
 	friend union MyUnion;
 };
@@ -34,7 +34,7 @@ class Hex
 	unsigned char hex1:4;
 	
 	void show() const;
-	void showPos(size_t pos);
+	void showPos(size_t pos) const;
 	void edit(size_t pos, size_t val);
 	friend union MyUnion;
 };

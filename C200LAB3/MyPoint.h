@@ -19,10 +19,9 @@ public:
 	MyPoint operator+(const MyPoint&) const;
 	MyPoint operator+(int) const;
 	const MyPoint& operator+() const;
-	//TODO + by class 
 
 	friend MyPoint operator-(const MyPoint&);
-	friend MyPoint operator+(const int&, const MyPoint&);
+	friend MyPoint operator+(int, const MyPoint&);
 	friend MyPoint operator-(const MyPoint&, const MyPoint&);
 	friend MyPoint operator-(const MyPoint&, int);
 	friend MyPoint& operator -=(MyPoint&, const MyPoint&);
