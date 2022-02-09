@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyByteUnion.cpp" />
     <ClCompile Include="myCircle.cpp" />
     <ClCompile Include="myRect1.cpp" />
     <ClCompile Include="myString.cpp" />

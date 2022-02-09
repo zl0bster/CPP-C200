@@ -11,6 +11,7 @@
 #include "Shape.h"
 #include "myRect1.h"
 #include "myCircle.h"
+#include "MyByteUnion.h"
 #define	  stop __asm nop
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -263,7 +264,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	line.PrintMyString();
 
 ////////////////////////////////////////////////////////////////////////
-/*
+
 	//Задание 10.Объединения (union) C++. Битовые поля.
 	//1.
 	//Создайте следующие классы для различных представлений значений байта:
@@ -284,14 +285,20 @@ int _tmain(int argc, _TCHAR* argv[])
 	//б) выводить отдельные (указанные посредством параметра) шестнадцатеричные,
 	//			восьмеричные, двоичные цифры;
 	//в) изменять отдельные двоичные, восьмеричные или шестнадцатеричные цифры;
-
-	MyByte byte(0x1f);
-	byte.ShowHex();
-	byte.ShowBin();
-	//...
-
-
-*/
+	{
+		std::cout << "=====================\n";
+		MyUnion byte(0x1f);
+		byte.ShowHex();
+		byte.ShowBin();
+		byte.ShowOct();
+		byte.EditOct(2, 3);
+		byte.EditOct(1, 7);
+		byte.ShowOct();
+		byte.ShowHex();
+		byte.EditHex(0, 10);
+		byte.ShowHex();
+		std::cout << "=====================\n";
+	}
 	return 0;
 }//endmain
 
