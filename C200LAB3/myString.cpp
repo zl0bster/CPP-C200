@@ -7,31 +7,37 @@
 #include "myString.h"
 using namespace std;
 
+size_t MyString::counter = 0;
+
 MyString::MyString()
 {
 	m_pStr = nullptr;
+	m_id = ++counter;
 }
 
 MyString::~MyString()
 {
-	cout << "free string memory\t"<<m_pStr<<"\n"<<"= = =\n";
+	cout << "free string memory\t"<<m_pStr<<"\n"<<"ID: "<< m_id <<" = = =\n";
 }
 
 MyString::MyString(const char* other)
 {
 	m_pStr = nullptr;
+	m_id = ++counter;
 	SetNewString(other);
 }
 
 MyString::MyString(const MyString& other)
 {
 	m_pStr = nullptr;
+	m_id = ++counter;
 	SetNewString(other.m_pStr);
 }
 
 MyString::MyString(MyString&& other)
 {
 	m_pStr = other.m_pStr;
+	m_id = ++counter;
 	other.m_pStr = nullptr;
 }
 
@@ -68,7 +74,8 @@ void MyString::Concat(const char* other)
 	size_t lenOrig = strlen(m_pStr) + 1;
 	char* newStr = new char[lenOther + lenOrig + 1];
 	strcpy_s(newStr, lenOrig, m_pStr);
-	strcpy_s(newStr + lenOrig, lenOther, other);
+	//strcpy_s(newStr + lenOrig, lenOther, other);
+	strcat(newStr, other);
 	delete[] m_pStr;
 	m_pStr = newStr;
 }
@@ -93,6 +100,25 @@ MyString& MyString::operator=(const char* oth)
 {
 	SetNewString(oth);
 	return *this;
+}
+
+MyString& MyString::operator+=(const MyString& oth)
+{
+	Concat(oth.m_pStr);
+	return *this;
+}
+
+MyString& operator+(const MyString& left, const MyString& right)
+{
+	MyString tmp(left);
+	tmp.Concat(right.m_pStr);
+	return tmp;
+}
+
+ostream& operator<<(ostream& os, const MyString& it)
+{
+	os << "ID: " << it.m_id << "\t" << it.m_pStr;
+	return os;
 }
 
 MyString ConcatLines(const char* line, ...)// nullptr is end of line
