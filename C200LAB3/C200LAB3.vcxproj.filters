@@ -24,12 +24,18 @@
     <ClCompile Include="MyPoint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

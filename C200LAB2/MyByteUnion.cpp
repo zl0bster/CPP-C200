@@ -12,47 +12,17 @@ MyUnion::MyUnion(unsigned char byte)
 
 void Bin::show() const
 {
-	char val[9]{"00000000"};
+	int val[]{b7,b6,b5,b4,b3,b2,b1,b0};
+	char str[]{ "00000000" };
 	const char* alfabet = "01";
-	unsigned char buf = 0;
 	for (unsigned char i = 0; i < 8;i++ )
 	{
-		switch (i)
-		{
-		case 0:
-			buf = b7;
-			break;
-		case 1:
-			buf = b6;
-			break;
-		case 2:
-			buf = b5;
-			break;
-		case 3:
-			buf = b4;
-			break;
-		case 4:
-			buf = b3;
-			break;
-		case 5:
-			buf = b2;
-			break;
-		case 6:
-			buf = b1;
-			break;
-		case 7:
-			buf = b0;
-			break;
-		}
-		if (buf < 2)
-		{
-			val[i] = alfabet[buf];
-		}
+			str[i] = alfabet[val[i]];
 	}
-	cout << val << endl;
+	cout << str << endl;
 }
 
-void Bin::showPos(size_t pos)
+void Bin::showPos(size_t pos) const
 {
 }
 
@@ -91,29 +61,15 @@ void Bin::edit(size_t pos, size_t val)
 
 void Oct::show() const
 {
-	char val[4]{ "000" };
+	int val[]{ oct2, oct1, oct0 };
+	char str[]{ "000" };
 	const char* alfabet = "01234567";
 	unsigned char buf = 0;
 	for (unsigned char i = 0; i < 3; i++)
 	{
-		switch (i)
-		{
-		case 0:
-			buf = oct2;
-			break;
-		case 1:
-			buf = oct1;
-			break;
-		case 2:
-			buf = oct0;
-			break;
-		}
-		if (buf < 16)
-		{
-			val[i] = alfabet[buf];
-		}
+		str[i] = alfabet[val[i]];
 	}
-	cout << val << endl;
+	cout << str << endl;
 }
 
 void Oct::showPos(size_t pos)
@@ -141,26 +97,15 @@ void Oct::edit(size_t pos, size_t val)
 
 void Hex::show() const
 {
-	char val[3]{ "00" };
+	int val[]{ hex1, hex0 };
+	char str[]{ "00" };
 	const char* alfabet = "0123456789ABCDEF";
 	unsigned char buf = 0;
 	for (unsigned char i = 0; i < 2; i++)
 	{
-		switch (i)
-		{
-		case 0:
-			buf = hex1;
-			break;
-		case 1:
-			buf = hex0;
-			break;
-		}
-		if (buf < 16)
-		{
-			val[i] = alfabet[buf];
-		}
+		str[i] = alfabet[val[i]];
 	}
-	cout << val << endl;
+	cout << str << endl;
 }
 
 void Hex::showPos(size_t pos)

@@ -11,7 +11,7 @@ class Bin
 	unsigned char b7:1;
 	
 	void show() const;
-	void showPos(size_t pos);
+	void showPos(size_t pos) const;
 	void edit(size_t pos, size_t val);
 	friend union MyUnion;
 };

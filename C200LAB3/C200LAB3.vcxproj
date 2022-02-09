@@ -140,10 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyData.cpp" />
     <ClCompile Include="MyPoint.cpp" />
     <ClCompile Include="myString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MyData.h" />
     <ClInclude Include="MyPoint.h" />
     <ClInclude Include="myString.h" />
   </ItemGroup>

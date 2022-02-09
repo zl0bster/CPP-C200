@@ -70,6 +70,7 @@ const char* MyString::GetString() const
 
 void MyString::Concat(const char* other)
 {
+	//TODO check for nullptr int pointers
 	size_t lenOther = strlen(other) + 1;
 	size_t lenOrig = strlen(m_pStr) + 1;
 	char* newStr = new char[lenOther + lenOrig + 1];
@@ -108,7 +109,7 @@ MyString& MyString::operator+=(const MyString& oth)
 	return *this;
 }
 
-MyString& operator+(const MyString& left, const MyString& right)
+MyString operator+(const MyString& left, const MyString& right)
 {
 	MyString tmp(left);
 	tmp.Concat(right.m_pStr);

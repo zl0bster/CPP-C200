@@ -23,7 +23,7 @@ public:
     MyString& operator = (const char* oth);
     MyString& operator+= (const MyString& oth);
 
-    friend MyString& operator + (const MyString& left, const MyString& right);
+    friend MyString operator + (const MyString& left, const MyString& right);
     friend ostream& operator<<(ostream& os, const MyString& it);
 };
 MyString ConcatLines(const char* , ...);// nullptr is end of line
