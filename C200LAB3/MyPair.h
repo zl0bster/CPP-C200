@@ -6,7 +6,7 @@
 class MyPair
 {
 	MyString key;
-	MyData* data;
+	MyData data;
 public:
 	MyPair(const char* k = nullptr, const MyData* md = nullptr);
 	bool operator==(const char* k) const;

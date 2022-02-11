@@ -17,7 +17,10 @@ MyString::MyString()
 
 MyString::~MyString()
 {
-	cout << "free string memory\t"<<m_pStr<<"\n"<<"ID: "<< m_id <<" = = =\n";
+	if (m_pStr != nullptr)
+		cout << "free string memory\t" << m_pStr << "\n" << "ID: " << m_id << " = = =\n";
+	else
+		cout << "free string memory\t" << "ID: " << m_id << " = = =\n";
 }
 
 MyString::MyString(const char* other)
@@ -38,7 +41,6 @@ MyString::MyString(MyString&& other)
 {
 	m_pStr = other.m_pStr;
 	m_id = ++counter;
-	//other.m_pStr = nullptr;
 }
 
 void MyString::SetNewString(const char* other)
@@ -138,7 +140,10 @@ MyString MyString::operator+(const MyString& oth) const
 
 ostream& operator<<(ostream& os, const MyString& it)
 {
-	os << "ID: " << it.m_id << "\t" << it.m_pStr;
+	if (it.m_pStr != nullptr)
+		os << "ID: " << it.m_id << "\t" << it.m_pStr;
+	else
+		os << "ID: " << it.m_id << "\tempty";
 	return os;
 }
 

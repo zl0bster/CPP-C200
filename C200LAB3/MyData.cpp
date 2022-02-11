@@ -35,4 +35,5 @@ ostream& operator<<(ostream& os, const MyData& md)
 	char sx = sxAlph[md.m_sex];
 	os << "ID: " << md.m_id << "\t" << sx << "\t" << md.m_age
 		<< "\t" << md.m_job << "\t" << md.m_salary;
+	return os;
 }
