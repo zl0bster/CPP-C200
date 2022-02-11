@@ -11,6 +11,7 @@ using namespace std;
 #include "myString.h"
 #include "MyPoint.h"
 #include "MyData.h"
+#include "MyPair.h"
 
 #define	  stop __asm nop
 
@@ -132,12 +133,21 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	*/
 	{
+		cout << "= = = = = = = = = = = = =\n";
 		MyData temp(MyData::MALE, 15, "pupil", 200);
 		cout << temp << endl;
 		MyData tmp1(temp);
 		cout << tmp1 << endl;
 		MyData tmp2;
 		cout << tmp2 << endl;
+		const char* name1 = "Brendon";
+		MyPair pt1("John", &tmp1);
+		cout << pt1 << endl;
+		MyPair pt2(name1, &temp);
+		cout << pt2 << endl;
+		pt1 = pt2;
+		cout << pt1 << endl;
+		cout << (pt1==name1) << endl;
 	}
 	return 0;
 }//endmain
