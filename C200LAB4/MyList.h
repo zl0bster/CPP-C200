@@ -22,8 +22,8 @@ class MyList
 	};
 
 private:
-	MyNodeBi m_head;
-	MyNodeBi m_tale;
+	MyNodeBi* m_head;
+	MyNodeBi* m_tale;
 	size_t m_qty;
 public:
 	MyList();
