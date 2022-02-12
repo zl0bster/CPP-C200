@@ -10,11 +10,15 @@ MyBase::MyBase()
 	qty = 0;
 	capacity = 0;
 	pBase = nullptr;
+	add_capacity(1);
 	std::cout << "base created\n";
 }
 
 MyBase::~MyBase()
 {
+	if (qty > 0)
+		for (size_t i = 0; i <qty; i++)
+			delete pBase[i];
 	delete[] pBase;
 	std::cout << "base removed\n";
 }
@@ -26,7 +30,7 @@ MyData& MyBase::operator[](const char* key) // throws out_of_range if not match
 	throw out_of_range{""};
 }
 
-bool MyBase::operator+(const MyPair& p)
+bool MyBase::operator+=(const MyPair& p)
 {
 	int posFound = find_item(p.key.GetString());
 	if (posFound>=0) return false;
@@ -34,7 +38,7 @@ bool MyBase::operator+(const MyPair& p)
 	return true;
 }
 
-bool MyBase::operator-(const char* key)
+bool MyBase::operator-=(const char* key)
 {
 	int posFound = find_item(key);
 	if (posFound<0) return false;
@@ -52,23 +56,27 @@ bool MyBase::if_contains(const char* key) const
 void MyBase::print_bd() const
 {
 	size_t i = qty;
-	while (qty > 0)
-		cout << *pBase[i-1] << endl;
+	while (i > 0)
+	{
+		cout << *pBase[i - 1] << endl;
+		i--;
+	}
 }
 
-void MyBase::add_capacity(size_t qty)
+void MyBase::add_capacity(size_t n)
 {
-	size_t newCap = capacity + qty;
+	size_t newCap = capacity + n;
 	MyPair** newBase = new MyPair * [newCap];
 	if (capacity != 0)
 	{
-		for (int i = 0; i < qty; i++)
-			newBase[i] = pBase[i];
+		size_t cpySize = sizeof(pBase) * (qty + 1);
+		memcpy(newBase, pBase, cpySize);
 		delete[]pBase;		// remove pointers array
-		for (size_t i = qty; i < capacity; i++)
+		for (size_t i = qty+1; i < newCap; i++)
 			newBase[i] = nullptr;
 	}
 	pBase = newBase;
+	capacity = newCap;
 }
 
 int MyBase::find_item(const char* key) const
@@ -78,6 +86,7 @@ int MyBase::find_item(const char* key) const
 		size_t posFound = 0;
 		while (posFound < qty)
 		{
+			cout << "  _" << posFound << endl;
 			if (*pBase[posFound] == key)
 				return posFound;
 			posFound++;
@@ -91,13 +100,16 @@ void MyBase::add_item(const MyPair& p)
 	int capReserv = capacity - qty;
 	if (capReserv < 1)
 	{
-		capReserv = (capReserv < 0) ? (qty - capacity + 1) : 1;
+		capReserv = 2;
+		//capReserv = (capReserv < 0) ? (qty - capacity + 1) : 1;
 		add_capacity(capReserv);
 	}
 	MyPair* tmp = new MyPair;
 	*tmp = p;
 	pBase[qty] = tmp;
+	cout << "___added to pos _" << qty << "\t" << *pBase[qty] << endl;
 	qty++;
+
 }
 
 void MyBase::remove_item(int pos)

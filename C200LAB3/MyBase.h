@@ -14,8 +14,8 @@ public:
 	~MyBase();
 
 	MyData& operator[](const char* key);
-	bool operator+(const MyPair&);
-	bool operator-(const char* key);
+	bool operator+=(const MyPair&);
+	bool operator-=(const char* key);
 	bool if_contains(const char* key) const;
 	void print_bd() const;
 	friend ostream& operator<<(ostream& os, const MyBase& bd);

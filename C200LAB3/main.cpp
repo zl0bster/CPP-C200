@@ -12,6 +12,7 @@ using namespace std;
 #include "MyPoint.h"
 #include "MyData.h"
 #include "MyPair.h"
+#include "MyBase.h"
 
 #define	  stop __asm nop
 
@@ -148,7 +149,27 @@ int _tmain(int argc, _TCHAR* argv[])
 		pt1 = pt2;
 		cout << pt1 << endl;
 		cout << (pt1==name1) << endl;
+		pt2.fill_it_rnd();
+		cout << pt2 << endl;
+		cout << "+++++++++++++++++++++++++\n";
+		MyBase db1;
+		for (int i = 0; i < 12; i++)
+		{
+			pt1.fill_it_rnd();
+			db1 += pt1;
+			cout << db1 << endl;
+			db1.print_bd();
+		}
+		cout << db1["Ptah"] << endl;
+		db1 -= "Ptah";
+		db1 -= "Ptah";
+		db1 -= "Marco";
+		db1 -= "Marko";
+		db1 -= "John";
+		cout << db1 << endl;
+		db1.print_bd();
 	}
+	cout << "*************************\n";
 	return 0;
 }//endmain
 

@@ -10,6 +10,7 @@ class MyPair
 public:
 	MyPair(const char* k = nullptr, const MyData* md = nullptr);
 	bool operator==(const char* k) const;
+	void fill_it_rnd();
 	friend class MyBase;
 	friend ostream& operator<<(ostream& os, const MyPair& mp);
 };
