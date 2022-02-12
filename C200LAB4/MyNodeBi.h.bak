@@ -1,0 +1,22 @@
+#pragma once
+
+#include <iostream>
+using namespace std;
+
+#include "MyCircle.h"
+#include "MyList.h"
+
+class MyNodeBi
+{
+	friend class MyList;
+
+	MyNodeBi* pPrev;
+	MyNodeBi* pNext;
+	MyCircle* m_dat;
+public:
+	MyNodeBi();
+	MyNodeBi(MyNodeBi* prv, MyNodeBi* nxt, const MyCircle* dat);
+	~MyNodeBi();
+	friend ostream& operator<<(ostream& os, const MyNodeBi& mn);
+};
+
