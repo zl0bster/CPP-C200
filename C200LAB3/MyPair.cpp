@@ -9,8 +9,11 @@ MyPair::MyPair(const char* k, const MyData* md)
 
 bool MyPair::operator==(const char* k) const
 {
-	int cpResult = strcmp(key.GetString(), k);
-	if (cpResult == 0) return true;
+	if ((k != nullptr) && (key.GetString() != nullptr))
+	{
+		int cpResult = strcmp(key.GetString(), k);
+		if (cpResult == 0) return true;
+	}
 	return false;
 }
 
