@@ -27,7 +27,11 @@ MyData& MyBase::operator[](const char* key) // throws out_of_range if not match
 {
 	int posFound = find_item(key); // checks for nullptr by itself
 	if(posFound >=0) return pBase[posFound]->data;
-	throw out_of_range{""};
+	//throw out_of_range{""};
+	MyPair tmp=MyPair(key);
+	add_item(tmp);
+	posFound = find_item(key);
+	return pBase[posFound]->data;
 }
 
 bool MyBase::operator+=(const MyPair& p)
@@ -86,7 +90,7 @@ int MyBase::find_item(const char* key) const
 		size_t posFound = 0;
 		while (posFound < qty)
 		{
-			cout << "  _" << posFound << endl;
+			//cout << "  _" << posFound << endl;
 			if (*pBase[posFound] == key)
 				return posFound;
 			posFound++;
@@ -125,6 +129,9 @@ void MyBase::remove_item(int pos)
 
 ostream& operator<<(ostream& os, const MyBase& bd)
 {
-	os << "BD Items Qty= " << bd.qty << " of " << bd.capacity;
+	os << "BD Items Qty= " << bd.qty << " of " << bd.capacity <<endl;
+	os << "=====================================================\n";
+	bd.print_bd();
+	os << "=====================================================\n";
 	return os;
 }
