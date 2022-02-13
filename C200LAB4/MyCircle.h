@@ -2,11 +2,11 @@
 #include <iostream>
 using namespace std;
 
-
 #include"MyPoint.h"
 
 class MyCircle
 {
+private:
 	MyPoint m_pt;
 	int m_r;
 public:

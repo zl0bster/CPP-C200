@@ -144,6 +144,7 @@
     <ClInclude Include="MyPoint.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MyCircle.cpp" />
     <ClCompile Include="MyList.cpp" />
     <ClCompile Include="MyNodeBi.cpp" />
