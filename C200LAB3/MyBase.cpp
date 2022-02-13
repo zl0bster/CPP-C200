@@ -16,11 +16,75 @@ MyBase::MyBase()
 
 MyBase::~MyBase()
 {
-	if (qty > 0)
-		for (size_t i = 0; i <qty; i++)
-			delete pBase[i];
+	clear_base();
 	delete[] pBase;
+	capacity = 0;
+	pBase = nullptr;
 	std::cout << "base removed\n";
+}
+
+MyBase::MyBase(const MyBase& ob)
+{
+	qty = 0;
+	capacity = 0;
+	pBase = nullptr;
+	if (ob.qty == 0) return;
+	add_capacity(ob.qty + 1);
+	for (int i = 0; i < ob.qty; i++)
+	{
+		pBase[i] = new MyPair(*ob.pBase[i]);
+		qty++;
+	}
+}
+
+MyBase::MyBase( MyBase&& ob)
+{
+	qty = 0;
+	capacity = 0;
+	pBase = nullptr;
+	if (ob.qty == 0) return;
+	add_capacity(ob.qty + 1);
+	for (int i = 0; i < ob.qty; i++)
+	{
+		pBase[i] = ob.pBase[i];
+		ob.pBase[i] = nullptr;
+	}
+	qty = ob.qty;
+	ob.qty = 0;
+}
+
+MyBase& MyBase::operator=(const MyBase& ob)
+{
+	clear_base();
+	if (ob.qty > 0)
+	{
+		if ((capacity-1)< ob.qty)
+			add_capacity(ob.qty- capacity + 1);
+		for (int i = 0; i < ob.qty; i++)
+		{
+			pBase[i] = new MyPair(*ob.pBase[i]);
+			qty++;
+		}
+	}
+	return *this;
+}
+
+MyBase& MyBase::operator=(MyBase&& ob)
+{
+	clear_base();
+	if (ob.qty > 0)
+	{
+		if ((capacity - 1) < ob.qty)
+			add_capacity(ob.qty - capacity + 1);
+		for (int i = 0; i < ob.qty; i++)
+		{
+			pBase[i] = ob.pBase[i];
+			ob.pBase[i] = nullptr;
+		}
+		qty = ob.qty;
+		ob.qty = 0;
+	}
+	return *this;
 }
 
 MyData& MyBase::operator[](const char* key) // throws out_of_range if not match
@@ -111,7 +175,7 @@ void MyBase::add_item(const MyPair& p)
 	MyPair* tmp = new MyPair;
 	*tmp = p;
 	pBase[qty] = tmp;
-	cout << "___added to pos _" << qty << "\t" << *pBase[qty] << endl;
+	//cout << "___added to pos _" << qty << "\t" << *pBase[qty] << endl;
 	qty++;
 
 }
@@ -124,6 +188,19 @@ void MyBase::remove_item(int pos)
 		pBase[pos] = pBase[qty - 1];
 		pBase[qty - 1] = nullptr;
 		qty--;
+	}
+}
+
+void MyBase::clear_base()
+{
+	if (qty > 0)
+	{
+		for (size_t i = 0; i < qty; i++)
+		{
+			delete pBase[i];
+			pBase[i] = nullptr;
+		}
+		qty = 0;
 	}
 }
 

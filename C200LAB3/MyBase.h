@@ -12,6 +12,10 @@ class MyBase
 public:
 	MyBase();
 	~MyBase();
+	MyBase(const MyBase& ob);
+	MyBase(MyBase&& ob);
+	MyBase& operator=(const MyBase& ob);
+	MyBase& operator=(MyBase&& ob);
 
 	MyData& operator[](const char* key);
 	bool operator+=(const MyPair&);
@@ -25,5 +29,6 @@ private:
 	int find_item(const char* key) const;	// negative if not found
 	void add_item(const MyPair&);			//no check for correct arg
 	void remove_item(int pos);				//no check for correct arg
+	void clear_base();
 };
 
