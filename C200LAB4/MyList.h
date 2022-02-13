@@ -18,6 +18,7 @@ class MyList
 		MyNodeBi();
 		MyNodeBi(MyNodeBi* prv, MyNodeBi* nxt, const MyCircle* dat);
 		~MyNodeBi();
+		friend ostream& operator<<(ostream& os, MyList& ml);
 		friend ostream& operator<<(ostream& os, const MyNodeBi& mn);
 	};
 
