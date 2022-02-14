@@ -8,12 +8,13 @@ using namespace std;
 
 class MyList
 {
+public:
 	class MyNodeBi	// to public
 	{
 		friend class MyList;
 		MyNodeBi* pPrev;
 		MyNodeBi* pNext;
-		MyCircle* m_dat; // внедренный
+		MyCircle m_dat; // внедренный
 	public:
 		MyNodeBi();
 		MyNodeBi(MyNodeBi* prv, MyNodeBi* nxt, const MyCircle* dat);
@@ -23,11 +24,16 @@ class MyList
 	};
 
 private:
-	MyNodeBi* m_head; // внедренный
-	MyNodeBi* m_tale; // внедренный
+	MyNodeBi m_head; // внедренный
+	MyNodeBi m_tale; // внедренный
 	size_t m_qty;
 public:
 	MyList();
+	~MyList();
+	MyList(const MyList& ol);
+	MyList(MyList&& ol);
+	MyList& operator=(const MyList& ol);
+	MyList& operator=(MyList&& ol);
 	void push_head(const MyCircle* c);
 	void push_tale(const MyCircle* c);
 	MyCircle& pop_head(); // by value
