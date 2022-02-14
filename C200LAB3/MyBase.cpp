@@ -54,24 +54,42 @@ MyBase::MyBase(MyBase&& ob)
 
 MyBase& MyBase::operator=(const MyBase& ob)
 {
-	if (&ob == this) return;
-	clear_base();
-	if (ob.qty > 0)
+	if (&ob == this) return *this;
+	if (ob.qty == 0)
 	{
-		if ((capacity-1)< ob.qty)
-			add_capacity(ob.qty- capacity + 1);
-		for (int i = 0; i < ob.qty; i++)
-		{
-			pBase[i] = new MyPair(*ob.pBase[i]);
-		}
-		qty = ob.qty;
+		clear_base();
+		return *this;
 	}
+	if ((capacity - 1) < ob.qty)
+		add_capacity(ob.qty - capacity + 1);
+	for (int i = 0; i < qty; i++)
+		*pBase[i] = *ob.pBase[i];
+	for (int i = qty; i < ob.qty; i++)
+		pBase[i] = new MyPair(*ob.pBase[i]);
+	qty = ob.qty;
 	return *this;
 }
 
+//MyBase& MyBase::operator=(const MyBase& ob)
+//{
+//	if (&ob == this) return *this;
+//	clear_base();
+//	if (ob.qty > 0)
+//	{
+//		if ((capacity-1)< ob.qty)
+//			add_capacity(ob.qty- capacity + 1);
+//		for (int i = 0; i < ob.qty; i++)
+//		{
+//			pBase[i] = new MyPair(*ob.pBase[i]);
+//		}
+//		qty = ob.qty;
+//	}
+//	return *this;
+//}
+
 MyBase& MyBase::operator=(MyBase&& ob)
 {
-	if (&ob == this) return;
+	if (&ob == this) return *this;
 	clear_base();
 	if (ob.qty > 0)
 	{
