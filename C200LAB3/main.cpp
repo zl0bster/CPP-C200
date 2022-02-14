@@ -158,17 +158,17 @@ int _tmain(int argc, _TCHAR* argv[])
 			pt1.fill_it_rnd();
 			db1 += pt1;
 			cout << db1 << endl;
-			//db1.print_bd();
 		}
 		cout << db1["Ptah"] << endl;
 		cout << db1["Marko"] << endl;
+		MyBase db2 = db1;
 		db1 -= "Ptah";
 		db1 -= "Ptah";
 		db1 -= "Marco";
 		db1 -= "Marko";
 		db1 -= "John";
 		cout << db1 << endl;
-		//db1.print_bd();
+		cout << db2 << endl;
 	}
 	cout << "*************************\n";
 	return 0;

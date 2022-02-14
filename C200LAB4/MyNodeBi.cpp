@@ -26,7 +26,7 @@ MyList::MyNodeBi::MyNodeBi(MyNodeBi* prv, MyNodeBi* nxt, const MyCircle* dat)
 }
 
 MyList::MyNodeBi::~MyNodeBi()
-{
+{ // add check for nullptr if head and tale
 	pPrev->pNext = pNext;
 	pNext->pPrev = pPrev;
 	delete m_dat;

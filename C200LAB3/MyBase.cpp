@@ -25,6 +25,7 @@ MyBase::~MyBase()
 
 MyBase::MyBase(const MyBase& ob)
 {
+	if (&ob == this) return;
 	qty = 0;
 	capacity = 0;
 	pBase = nullptr;
@@ -33,28 +34,27 @@ MyBase::MyBase(const MyBase& ob)
 	for (int i = 0; i < ob.qty; i++)
 	{
 		pBase[i] = new MyPair(*ob.pBase[i]);
-		qty++;
 	}
+	qty = ob.qty;
 }
 
-MyBase::MyBase( MyBase&& ob)
+MyBase::MyBase(MyBase&& ob)
 {
+	if (&ob == this) return;
 	qty = 0;
 	capacity = 0;
 	pBase = nullptr;
 	if (ob.qty == 0) return;
 	add_capacity(ob.qty + 1);
-	for (int i = 0; i < ob.qty; i++)
-	{
-		pBase[i] = ob.pBase[i];
-		ob.pBase[i] = nullptr;
-	}
+	pBase = ob.pBase;
 	qty = ob.qty;
+	ob.pBase = nullptr;
 	ob.qty = 0;
 }
 
 MyBase& MyBase::operator=(const MyBase& ob)
 {
+	if (&ob == this) return;
 	clear_base();
 	if (ob.qty > 0)
 	{
@@ -63,25 +63,23 @@ MyBase& MyBase::operator=(const MyBase& ob)
 		for (int i = 0; i < ob.qty; i++)
 		{
 			pBase[i] = new MyPair(*ob.pBase[i]);
-			qty++;
 		}
+		qty = ob.qty;
 	}
 	return *this;
 }
 
 MyBase& MyBase::operator=(MyBase&& ob)
 {
+	if (&ob == this) return;
 	clear_base();
 	if (ob.qty > 0)
 	{
 		if ((capacity - 1) < ob.qty)
 			add_capacity(ob.qty - capacity + 1);
-		for (int i = 0; i < ob.qty; i++)
-		{
-			pBase[i] = ob.pBase[i];
-			ob.pBase[i] = nullptr;
-		}
+		pBase = ob.pBase;
 		qty = ob.qty;
+		ob.pBase = nullptr;
 		ob.qty = 0;
 	}
 	return *this;
@@ -91,11 +89,9 @@ MyData& MyBase::operator[](const char* key) // throws out_of_range if not match
 {
 	int posFound = find_item(key); // checks for nullptr by itself
 	if(posFound >=0) return pBase[posFound]->data;
-	//throw out_of_range{""};
 	MyPair tmp=MyPair(key);
 	add_item(tmp);
-	posFound = find_item(key);
-	return pBase[posFound]->data;
+	return pBase[qty-1]->data;
 }
 
 bool MyBase::operator+=(const MyPair& p)
@@ -137,7 +133,7 @@ void MyBase::add_capacity(size_t n)
 	MyPair** newBase = new MyPair * [newCap];
 	if (capacity != 0)
 	{
-		size_t cpySize = sizeof(pBase) * (qty + 1);
+		size_t cpySize = sizeof(MyPair*) * (qty + 1);
 		memcpy(newBase, pBase, cpySize);
 		delete[]pBase;		// remove pointers array
 		for (size_t i = qty+1; i < newCap; i++)

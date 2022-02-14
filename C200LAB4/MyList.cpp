@@ -33,7 +33,7 @@ MyCircle& MyList::pop_head()
 	*tmp = *m_head->pNext->m_dat;
 	delete m_head->pNext;
 	m_qty--;
-	return *tmp;
+	return *tmp; // return by value
 }
 
 MyCircle& MyList::pop_tale()
@@ -42,7 +42,7 @@ MyCircle& MyList::pop_tale()
 	*tmp = *m_tale->pPrev->m_dat;
 	delete m_tale->pPrev;
 	m_qty--;
-	return *tmp;
+	return *tmp; // return by value
 }
 
 MyCircle& MyList::operator[](size_t n)
@@ -56,16 +56,24 @@ MyCircle& MyList::operator[](size_t n)
 	}
 	return *currentNode->m_dat;
 }
-
+//
+//void MyList::empty_list()
+//{
+//	MyNodeBi* currentNode = m_head->pNext;
+//	while(m_qty>0)
+//	{
+//		currentNode = currentNode->pNext;
+//		delete currentNode->pPrev;
+//		m_qty--;
+//	}
+//}
 void MyList::empty_list()
 {
-	MyNodeBi* currentNode = m_head->pNext;
-	while(m_qty>0)
+	while(Head->pNext != tale)
 	{
-		currentNode = currentNode->pNext;
-		delete currentNode->pPrev;
-		m_qty--;
+		delete head->pNext;
 	}
+	m_qty = 0;
 }
 
 ostream& operator<<(ostream& os, MyList& ml)

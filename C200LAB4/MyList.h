@@ -8,12 +8,12 @@ using namespace std;
 
 class MyList
 {
-	class MyNodeBi
+	class MyNodeBi	// to public
 	{
 		friend class MyList;
 		MyNodeBi* pPrev;
 		MyNodeBi* pNext;
-		MyCircle* m_dat;
+		MyCircle* m_dat; // внедренный
 	public:
 		MyNodeBi();
 		MyNodeBi(MyNodeBi* prv, MyNodeBi* nxt, const MyCircle* dat);
@@ -23,22 +23,22 @@ class MyList
 	};
 
 private:
-	MyNodeBi* m_head;
-	MyNodeBi* m_tale;
+	MyNodeBi* m_head; // внедренный
+	MyNodeBi* m_tale; // внедренный
 	size_t m_qty;
 public:
 	MyList();
 	void push_head(const MyCircle* c);
 	void push_tale(const MyCircle* c);
-	MyCircle& pop_head();
-	MyCircle& pop_tale();
+	MyCircle& pop_head(); // by value
+	MyCircle& pop_tale(); // by value
 	MyCircle& operator[](size_t n);
 	void empty_list();
 	inline size_t get_qty() const
 	{
 		return m_qty;
 	};
-	friend ostream& operator<<(ostream& os, MyList& ml);
+	friend ostream& operator<<(ostream& os, const MyList& ml);
 	friend ostream& operator<<(ostream& os, const MyNodeBi& mn);
 };
 
