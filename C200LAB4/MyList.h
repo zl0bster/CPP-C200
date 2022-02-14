@@ -17,7 +17,7 @@ public:
 		MyCircle m_dat; // внедренный
 	public:
 		MyNodeBi();
-		MyNodeBi(MyNodeBi* prv, MyNodeBi* nxt, const MyCircle* dat);
+		MyNodeBi(MyNodeBi* prv, const MyCircle* dat);
 		~MyNodeBi();
 		friend ostream& operator<<(ostream& os, MyList& ml);
 		friend ostream& operator<<(ostream& os, const MyNodeBi& mn);
@@ -36,8 +36,8 @@ public:
 	MyList& operator=(MyList&& ol);
 	void push_head(const MyCircle* c);
 	void push_tale(const MyCircle* c);
-	MyCircle& pop_head(); // by value
-	MyCircle& pop_tale(); // by value
+	MyCircle pop_head(); // by value
+	MyCircle pop_tale(); // by value
 	MyCircle& operator[](size_t n);
 	void empty_list();
 	inline size_t get_qty() const
@@ -45,6 +45,6 @@ public:
 		return m_qty;
 	};
 	friend ostream& operator<<(ostream& os, const MyList& ml);
-	friend ostream& operator<<(ostream& os, const MyNodeBi& mn);
+	//friend ostream& operator<<(ostream& os, const MyNodeBi& mn);
 };
 
