@@ -23,9 +23,23 @@ MyList::MyNodeBi::MyNodeBi(MyNodeBi* prv, const MyCircle* dat)
 }
 
 MyList::MyNodeBi::~MyNodeBi()
-{ // add check for nullptr if head and tale
-	pPrev->pNext = pNext;
-	pNext->pPrev = pPrev;
+{
+	if ((pNext != nullptr) && (pPrev != nullptr)) {
+		pPrev->pNext = pNext;
+		pNext->pPrev = pPrev;
+	}
+}
+
+MyList::MyNodeBi& MyList::MyNodeBi::operator=(const MyNodeBi& on)
+{
+	m_dat = on.m_dat;
+	return *this;
+}
+
+MyList::MyNodeBi& MyList::MyNodeBi::operator=(MyNodeBi&& on)
+{
+	m_dat = on.m_dat;
+	return *this;
 }
 
 ostream& operator<<(ostream& os, const MyList::MyNodeBi& mn)
