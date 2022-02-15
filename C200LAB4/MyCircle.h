@@ -38,6 +38,10 @@ public:
 	{
 		return (m_r < c.m_r);
 	};
+	inline bool operator>(const MyCircle& c) const
+	{
+		return (m_r > c.m_r);
+	};
 	inline bool operator==(const MyCircle& c) const
 	{
 		return ((m_r == c.m_r) && (m_pt == c.m_pt));

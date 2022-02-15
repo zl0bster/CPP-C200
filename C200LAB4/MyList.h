@@ -9,20 +9,23 @@ using namespace std;
 class MyList
 {
 public:
-	class MyNodeBi	// to public
+	class MyNodeBi
 	{
 	public:
 		friend class MyList;
 		MyNodeBi* pPrev;
 		MyNodeBi* pNext;
-		MyCircle m_dat; // внедренный
+		MyCircle m_dat;
 
 		MyNodeBi();
 		MyNodeBi(MyNodeBi* prv, const MyCircle* dat);
 		~MyNodeBi();
 		MyNodeBi& operator=(const MyNodeBi& on);
 		MyNodeBi& operator=(MyNodeBi&& on);
-
+		inline bool operator<(const MyNodeBi& on) const
+		{ return (m_dat < on.m_dat); };
+		inline bool operator>(const MyNodeBi& on) const
+		{ return (m_dat > on.m_dat); };
 		friend ostream& operator<<(ostream& os, MyList& ml);
 		friend ostream& operator<<(ostream& os, const MyNodeBi& mn);
 	};
@@ -48,6 +51,7 @@ public:
 	{
 		return m_qty;
 	};
+	void sort(); // TODO
 	friend ostream& operator<<(ostream& os, const MyList& ml);
 
 private:

@@ -15,5 +15,12 @@ void main()
 		ml.push_tail(&mc);
 	}
 
+	MyList ml1(ml);
+	ml.pop_head();
+	ml.pop_tail();
+
+	cout << ml << endl;
+	cout << ml1 << endl;
+	ml1 = ml;
 	cout << ml << endl;
 }

@@ -126,6 +126,10 @@ void MyList::empty_list()
 	m_qty = 0;
 }
 
+void MyList::sort() // TODO
+{
+}
+
 void MyList::remove_to_tail(MyNodeBi* first_to_remove)
 {
 	MyNodeBi* next = first_to_remove->pNext;
