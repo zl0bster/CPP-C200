@@ -128,6 +128,22 @@ void MyList::empty_list()
 
 void MyList::sort() // TODO
 {
+	size_t swapCount;
+	MyCircle temp;
+	if (m_qty==0) return;
+	do {
+		swapCount = 0;
+		MyNodeBi* currentNode = m_head.pNext;
+		while (currentNode->pNext != &m_tail) {
+			if (currentNode->pNext->m_dat < currentNode->m_dat) {
+				temp = currentNode->pNext->m_dat;
+				currentNode->pNext->m_dat = currentNode->m_dat;
+				currentNode->m_dat = temp;
+				swapCount++;
+			}
+			currentNode = currentNode->pNext;
+		}
+	} while (swapCount > 0);
 }
 
 void MyList::remove_to_tail(MyNodeBi* first_to_remove)

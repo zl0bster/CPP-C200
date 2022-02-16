@@ -22,5 +22,7 @@ void main()
 	cout << ml << endl;
 	cout << ml1 << endl;
 	ml1 = ml;
+	ml.sort();
+	cout << ml1 << endl;
 	cout << ml << endl;
 }
