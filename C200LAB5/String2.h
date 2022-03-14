@@ -11,18 +11,21 @@ public:
 		StrNode* pNext = nullptr;
 		char* pData = nullptr;
 		size_t m_NOwners = 0;
+		//
 		static size_t sm_nNodes;
 		static StrNode* sm_pHead;
-		//-----------------------
-		StrNode(const char* data = nullptr, const StrNode* prev = nullptr);
+		//
+		StrNode(const char* data = nullptr);
 		~StrNode();
-		inline StrNode& operator++() { m_NOwners++; }
-		inline StrNode& operator--() { m_NOwners--; if (m_NOwners == 0) clear_strnode(); }
+		inline StrNode& operator++() { m_NOwners++; return *this; }
+		inline StrNode& operator--() { m_NOwners--; if (m_NOwners == 0) delete this; }
 		StrNode& operator=(const char* oc);
-		char* get();
+		const char* get() { return pData; }
 		friend std::ostream& operator<<(std::ostream& os, const StrNode& on);
 	private:
 		void clear_strnode() { delete pData; pData = nullptr; }
+		StrNode* find_prev();
+		StrNode* find_eq(const char*);
 	};
 
 private:
@@ -34,7 +37,7 @@ private:
 	String2& operator=(char* oc);
 	bool operator==(const String2& os);
 	bool operator==(const char* oc);
-	char* get();
+	const char* get() { return DataNode->pData; }
 	void print_list();
 	friend std::ostream& operator<<(std::ostream& os, const String2& on);
 };
