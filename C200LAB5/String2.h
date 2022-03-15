@@ -18,7 +18,7 @@ public:
 		StrNode(const char* data = nullptr);
 		~StrNode();
 		inline StrNode& operator++() { m_NOwners++; return *this; }
-		inline StrNode& operator--() { m_NOwners--; if (m_NOwners == 0) delete this; }
+		void decrease_nOwners();
 		//StrNode& operator=(const char* oc);
 		const char* get() const { return pData; }
 		static StrNode* find_eq(const char*);
@@ -34,9 +34,10 @@ private:
 public:
 	String2(const char* data = nullptr);
 	String2(const String2& os);
+	~String2();
 	String2& operator=(const String2& os);
-	String2& operator=(char* oc);
-	bool operator==(const String2& os) const { return (data_node==os.data_node); };
+	String2& operator=(const char* oc);
+	bool operator==(const String2& os) const { return (data_node == os.data_node); };
 	bool operator==(const char* oc) const;
 	const char* get() const { return data_node->pData; }
 	static void print_list();
