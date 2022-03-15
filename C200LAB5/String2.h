@@ -29,16 +29,16 @@ public:
 	};
 
 private:
-	StrNode* DataNode;
+	StrNode* data_node;
 	//----------------
 public:
 	String2(const char* data = nullptr);
-	String2(String2& os);
-	String2& operator=(String2& os);
+	String2(const String2& os);
+	String2& operator=(const String2& os);
 	String2& operator=(char* oc);
-	bool operator==(const String2& os) const { return (DataNode==os.DataNode); };
+	bool operator==(const String2& os) const { return (data_node==os.data_node); };
 	bool operator==(const char* oc) const;
-	const char* get() const { return DataNode->pData; }
+	const char* get() const { return data_node->pData; }
 	static void print_list();
 	friend std::ostream& operator<<(std::ostream& os, const String2& on);
 };

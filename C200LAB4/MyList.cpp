@@ -42,22 +42,17 @@ MyList::MyList(MyList&& ol)
 
 MyList& MyList::operator=(const MyList& ol)
 {
+	//todo clarify cycles (for)
 	MyNodeBi* destNode = m_head.pNext;
 	MyNodeBi* sorsNode = ol.m_head.pNext;
-	if (m_qty >= ol.m_qty) {
-		for (int i = 0; i < ol.m_qty; i++) {
-			*destNode = *sorsNode;
-			destNode = destNode->pNext;
-			sorsNode = sorsNode->pNext;
-		}
-		if (m_qty > ol.m_qty) remove_to_tail(destNode);
+	while((destNode!=&m_tail)&&(sorsNode!=&ol.m_tail))	{
+		*destNode = *sorsNode;
+		destNode = destNode->pNext;
+		sorsNode = sorsNode->pNext;
 	}
+	if (m_qty == ol.m_qty) return *this;
+	if (m_qty > ol.m_qty) remove_to_tail(destNode);
 	else {
-		for (int i = 0; i < m_qty; i++) {
-			*destNode = *sorsNode;
-			destNode = destNode->pNext;
-			sorsNode = sorsNode->pNext;
-		}
 		for (int i = m_qty; i < ol.m_qty; i++) {
 			push_tail(&sorsNode->m_dat);
 			sorsNode = sorsNode->pNext;

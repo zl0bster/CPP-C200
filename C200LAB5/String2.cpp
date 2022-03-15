@@ -3,8 +3,8 @@
 
 #include "String2.h"
 
-String2::StrNode sm_nNodes = 0;
-String2::StrNode sm_pHead = nullptr;
+size_t String2::StrNode::sm_nNodes = 0;
+String2::StrNode*  String2::StrNode::sm_pHead = nullptr;
 
 String2::StrNode::StrNode(const char* data)
 	:pNext(sm_pHead),
@@ -16,11 +16,12 @@ String2::StrNode::StrNode(const char* data)
 	sm_nNodes++;
 }
 
-// todo find previous node and remove current from chain
+//  find previous node and remove current from chain
 String2::StrNode::~StrNode() {
 	clear_strnode();
 	StrNode* prev = find_prev();
 	if(prev!=nullptr) prev->pNext = pNext;
+	//todo check if head is removed
 	sm_nNodes--;
 }
 
@@ -57,37 +58,38 @@ std::ostream& operator<<(std::ostream& os, const String2::StrNode& on)
 
 std::ostream& operator<<(std::ostream& os, const String2& on)
 {
-	if (on.DataNode != nullptr) os << *on.DataNode;
+	if (on.data_node != nullptr) os << *on.data_node;
 	return os;
 }
 
 
 String2::String2(const char* data)
-	:DataNode(nullptr) {
+	:data_node(nullptr) {
 	if (data == nullptr) return;
 	StrNode* cur = String2::StrNode::find_eq(data);
-	if (cur != nullptr) { DataNode = cur; ++(* cur); return; }
-	DataNode = new String2::StrNode(data);
+	if (cur != nullptr) { data_node = cur; ++(* cur); return; }
+	data_node = new String2::StrNode(data);
 }
 
-String2::String2(String2& os)
+String2::String2(const String2& os)
 {
-	DataNode = os.DataNode;
-	++(*os.DataNode);
+	data_node = os.data_node;
+	++(*this->data_node);
 }
 
-String2& String2::operator=(String2& os)
+String2& String2::operator=(const String2& os)
 {
-	DataNode = os.DataNode;
-	++(*os.DataNode);
+	//todo check equal and clear old data
+	data_node = os.data_node;
+	++(*this->data_node);
 	return *this;
 }
 
 String2& String2::operator=(char* oc)
 {
 	StrNode* cur = String2::StrNode::find_eq(oc);
-	if (cur != nullptr) { DataNode = cur; ++(*cur); }
-	else DataNode = new String2::StrNode(oc);
+	if (cur != nullptr) { data_node = cur; ++(*cur); }
+	else data_node = new String2::StrNode(oc);
 	return *this;
 }
 
